@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Materiales básicos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let product of products">
+      <ion-label>
+        <h2>Cemento</h2>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmq-8bB6LONzrMn5nTFdaT0EARwio0Q7EmVw&s" />
+        <p>13000</p>
+        <ion-card-content>
+          Here's a small text description for the card content. Nothing more, nothing less.
+        </ion-card-content>
+      </ion-label>
+      <ion-button (click)="addToCart(product)">Agregar al carrito</ion-button>
+    </ion-item>
+
+    <ion-item *ngFor="let product of products">
+      <ion-label>
+        <h2>Madera</h2>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmq-8bB6LONzrMn5nTFdaT0EARwio0Q7EmVw&s" />
+        <p>13000</p>
+        <ion-card-content>
+          Here's a small text description for the card content. Nothing more, nothing less.
+        </ion-card-content>
+      </ion-label>
+      <ion-button (click)="addToCart(product)">Agregar al carrito</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+

@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Carrito</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let product of cart">
+      <ion-label>
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.price | currency }}</p>
+        <p>Cantidad: {{ product.quantity }}</p>
+        <p>Categoría: {{ product.category }}</p>
+      </ion-label>
+      <ion-button (click)="removeFromCart(product.id, product.category)">Eliminar</ion-button>
+      <ion-button (click)="decreaseQuantity(product.id, product.category)">-</ion-button>
+      <ion-button (click)="addToCart(product)">+</ion-button>
+    </ion-item>
+  </ion-list>
+  <ion-item>
+    <ion-label>
+      <h2>Total: {{ total | currency }}</h2>
+    </ion-label>
+    <ion-button (click)="clearCart()">Vaciar carrito</ion-button>
+  </ion-item>
+  <ion-button (click)="Volverahome()">Volver</ion-button>
+  <ion-button (click)="changeCurrency('dolar')">Cambiar a Dólares</ion-button>
+  <ion-button (click)="changeCurrency('euro')">Cambiar a Euros</ion-button>
+</ion-content>
+
+
+
