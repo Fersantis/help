@@ -6,12 +6,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  obtenerDatos(inputValue: string, inputValue2: string) {
-    throw new Error('Method not implemented.');
-  }
-  private apiUrl = 'http://127.0.0.1:8001';  // URL base de la API Flask
+  
+  private apiUrl = 'http://127.0.0.1:5000';  // URL base de la API Flask
 
   constructor(private http: HttpClient) {}
+
+  obtenerDatos(username: string, password: string): Observable<any> {
+    const url = `${this.apiUrl}/login`;
+    return this.http.post(url, { username, password });
+  }
 
   getCambioMoneda(codigo: string): Observable<any> {
     const url = `${this.apiUrl}/cambio_moneda?codigo=${codigo}`;
