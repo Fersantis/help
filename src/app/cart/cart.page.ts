@@ -51,24 +51,22 @@ export class CartPage {
     this.router.navigate(['/home']);
   }
 
-  changeCurrency(currency: string) {
-    let codigo;
-    if (currency === 'dolar') {
-      codigo = 'F073.TCO.PRE.Z.D';
-    } else if (currency === 'euro') {
-      codigo = 'F072.CLP.EUR.N.O.D';
-    }
-
-    if (codigo) {
-      this.apiService.getCambioMoneda(codigo).subscribe((response: any) => {
-        const conversionRate = response.valor; // Asegúrate de que esta sea la propiedad correcta
-        this.cart = this.cart.map(product => {
-          return { ...product, price: product.price / conversionRate };
-        });
-        this.total = this.cartService.getTotal();
-      });
-    }
+  changeCurrency(currency: string) {    
+    this.apiService.getCambioMoneda().subscribe((response: any) => {
+      let conversionRate;
+      if (currency === 'dolar') {
+        conversionRate = response.dolar.valor; // Obtenemos el valor del dólar
+      } else if (currency === 'euro') {
+        conversionRate = response.euro.valor; // Obtenemos el valor del euro
+      }
+  
+      if (conversionRate) {
+        console.log(conversionRate);
+        this.total = this.cartService.getTotal() * conversionRate; // Convertimos el total a la nueva moneda
+      }
+    });
   }
+  
 }
 
 
