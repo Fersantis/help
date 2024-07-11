@@ -51,18 +51,13 @@ export class CartPage {
     this.router.navigate(['/home']);
   }
 
-  changeCurrency(currency: string) {    
-    this.apiService.getCambioMoneda().subscribe((response: any) => {
-      let conversionRate;
-      if (currency === 'dolar') {
-        conversionRate = response.dolar.valor; // Obtenemos el valor del dólar
-      } else if (currency === 'euro') {
-        conversionRate = response.euro.valor; // Obtenemos el valor del euro
-      }
-  
-      if (conversionRate) {
-        console.log(conversionRate);
-        this.total = this.cartService.getTotal() * conversionRate; // Convertimos el total a la nueva moneda
+  changeCurrency() {
+    const codigo = 'F073.TCO.PRE.Z.D'; // Código para dólar
+
+    this.apiService.getCambioMoneda(codigo).subscribe((response: any) => {
+      if (response.cambio) {
+        console.log(response.cambio);
+        this.total = this.cartService.getTotal() * response.cambio; // Convertimos el total a la nueva moneda
       }
     });
   }

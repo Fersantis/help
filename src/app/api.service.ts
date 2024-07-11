@@ -11,13 +11,13 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  obtenerDatos(username: string, password: string): Observable<any> {
+  obtenerDatos(nombre: string, password: string): Observable<any> {
     const url = `${this.apiUrl}/login`;
-    return this.http.post(url, { username, password });
+    return this.http.post(url, { nombre, password });
   }
 
   getCambioMoneda(codigo: string): Observable<any> {
-    const url = `${this.apiUrl}/cambio_moneda?codigo=${codigo}`;
+    const url = `${this.apiUrl}/CambioMoneda?codigo=${codigo}`;
     return this.http.get<any>(url);
   }
 }

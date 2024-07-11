@@ -11,7 +11,9 @@
     
     <ion-input label="usuario" [(ngModel)]="inputValue" labelPlacement="stacked" placeholder="Ingrese usuario"   ></ion-input>
     <ion-input label="Password"  [(ngModel)]="inputValue2"  labelPlacement="stacked" placeholder="Ingrese contraseña" type="Password"  ></ion-input>
-    <ion-button color="secondary" (click)="Irahome()" size="default">Ingresar</ion-button> 
+    <ion-button color="secondary" (click)="Irahome()" size="default" [disabled]="!inputValue || !inputValue2">Ingresar</ion-button> 
+
+    <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
   
   
   </ion-card-content>
