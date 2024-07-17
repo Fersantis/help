@@ -15,17 +15,16 @@ export class LoginPage implements OnInit {
   constructor(private router: Router, private apiService: ApiService) { }
 
   ngOnInit() { }
- 
+
   Ingresar() {
     if (!this.inputValue || !this.inputValue2) {
-      this.errorMessage = 'Por favor, ingrese ambos campos'; console.log('0');
+      this.errorMessage = 'Por favor, ingrese ambos campos';
       return;
     }
-    console.log('0.1');
+
     this.apiService.obtenerDatos(this.inputValue, this.inputValue2).subscribe(
       (response: any) => {
         if (response && response.length > 0) {
-          console.log('1');
           const apiNombre = response[0].nombre;
           const apiPassword = response[0].contrasena;
 
@@ -33,14 +32,11 @@ export class LoginPage implements OnInit {
           const userInputPassword = this.inputValue2;
 
           if (apiNombre === userInputNombre && apiPassword === userInputPassword) {
-            console.log('2');
             this.Irahome();
           } else {
-            console.log('3');
             this.errorMessage = 'Los datos ingresados son incorrectos';
           }
         } else {
-          console.log('4');
           this.errorMessage = 'Usuario no encontrado';
         }
       },
@@ -51,8 +47,9 @@ export class LoginPage implements OnInit {
     );
   }
 
-  Irahome() {  
+  Irahome() {
     this.router.navigate(['/home']);
   }
 }
+
 

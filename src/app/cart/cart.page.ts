@@ -87,8 +87,9 @@ export class CartPage {
             console.error('Error al realizar la compra', error);
         }
     );
+  }
 }
-}
+
 
 
 

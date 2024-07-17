@@ -8,19 +8,17 @@ import { Observable } from 'rxjs';
 export class ApiService {
   
   private apiUrl = 'http://127.0.0.1:5000';  // URL base de la API Flask
-
-  private urlDivisi = 'https://mindicador.cl/api';
-
+  private urlDivisi = 'https://mindicador.cl/api';  // URL de la API para obtener cambio de moneda
   private accessToken = 'TEST-6482890036916762-071613-1755725f7a0536227a724bdb5c053082-1087871581'; // Tu Access Token de Mercado Pago
 
   constructor(private http: HttpClient) {}
 
-  obtenerDatos(username: string, password: string): Observable<any> {
+  obtenerDatos(nombre: string, password: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
 
-    const body = { username, password };
+    const body = { nombre, password };
     
     return this.http.post(`${this.apiUrl}/login`, body, { headers });
   }
@@ -63,7 +61,6 @@ export class ApiService {
     return this.http.post(`${this.apiUrl}/comprar_herramienta`, data, { headers });
   }
 }
-
 
 
 
