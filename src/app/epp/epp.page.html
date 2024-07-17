@@ -8,26 +8,14 @@
   <ion-list>
     <ion-item *ngFor="let product of products">
       <ion-label>
-        <h2>Antiparras</h2>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmq-8bB6LONzrMn5nTFdaT0EARwio0Q7EmVw&s" />
-        <p>13000</p>
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.price | currency }}</p>
         <ion-card-content>
-          Here's a small text description for the card content. Nothing more, nothing less.
-        </ion-card-content>
-      </ion-label>
-      <ion-button (click)="addToCart(product)">Agregar al carrito</ion-button>
-    </ion-item>
-
-    <ion-item *ngFor="let product of products">
-      <ion-label>
-        <h2>Guantes</h2>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmq-8bB6LONzrMn5nTFdaT0EARwio0Q7EmVw&s" />
-        <p>13000</p>
-        <ion-card-content>
-          Here's a small text description for the card content. Nothing more, nothing less.
+          {{ product.description }}
         </ion-card-content>
       </ion-label>
       <ion-button (click)="addToCart(product)">Agregar al carrito</ion-button>
     </ion-item>
   </ion-list>
 </ion-content>
+

@@ -4,17 +4,15 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content><ion-card>
-  <ion-card-content>
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-input [(ngModel)]="usuario" label="Usuario" labelPlacement="stacked" placeholder="Ingrese nombre de usuario"></ion-input>
+      <ion-input [(ngModel)]="password" label="Password" labelPlacement="stacked" placeholder="Ingrese contraseña" type="Password"></ion-input>
+      <ion-input [(ngModel)]="correo" label="Correo electronico" labelPlacement="stacked" placeholder="Ingrese correo electronico"></ion-input>
+      <ion-button color="secondary" (click)="registrarUsuario()" size="default">Registrar</ion-button> 
+    </ion-card-content>
+  </ion-card>
+</ion-content>
 
-      
-    
-    <ion-input label="Usuario"  labelPlacement="stacked" placeholder="Ingrese nombre de usuario"   ></ion-input>
-    <ion-input label="Password"   labelPlacement="stacked" placeholder="Ingrese contraseña" type="Password"  ></ion-input>
-    <ion-input label="Correo electronico"  labelPlacement="stacked" placeholder="Ingrese correo electronico"   ></ion-input>
-    <ion-button color="secondary" (click)="Irahome()" size="default">Registrar</ion-button> 
-  
-  
-  </ion-card-content>
-</ion-card></ion-content>
 

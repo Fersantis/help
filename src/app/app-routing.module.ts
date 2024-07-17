@@ -50,6 +50,19 @@ const routes: Routes = [
     path: 'cart',
     loadChildren: () => import('./cart/cart.module').then( m => m.CartPageModule)
   },
+  {
+    path: 'pago',
+    loadChildren: () => import('./pago/pago.module').then( m => m.PagoPageModule)
+  },
+  {
+    path: 'exito',
+    loadChildren: () => import('./exito/exito.module').then( m => m.ExitoPageModule)
+  },
+  {
+    path: 'fallido',
+    loadChildren: () => import('./fallido/fallido.module').then( m => m.FallidoPageModule)
+  },
+  
 
   
 

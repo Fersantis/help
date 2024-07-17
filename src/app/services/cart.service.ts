@@ -7,6 +7,7 @@ export interface Product {
   price: number;
   quantity: number;
   category: string;
+  description?: string; // Asegúrate de incluir esta línea si es necesaria
 }
 
 @Injectable({
@@ -14,25 +15,12 @@ export interface Product {
 })
 export class CartService {
   private cart: Product[] = [];
-  private dolar: number = 0;
-  private euro: number = 0;
 
   constructor(private apiService: ApiService) {
     const storedCart = localStorage.getItem('cart');
     if (storedCart) {
       this.cart = JSON.parse(storedCart);
     }
-
-    this.loadExchangeRates();
-  }
-
-  private loadExchangeRates() {
-    this.apiService.getCambioMoneda('F073.TCO.PRE.Z.D').subscribe(data => {
-      this.dolar = parseFloat(data.valor);
-    });
-    this.apiService.getCambioMoneda('F072.CLP.EUR.N.O.D').subscribe(data => {
-      this.euro = parseFloat(data.valor);
-    });
   }
 
   getCart() {
@@ -73,25 +61,9 @@ export class CartService {
     return this.cart.reduce((i, j) => i + j.price * j.quantity, 0);
   }
 
-  changeCurrency(currency: string) {
-    if (currency === 'USD' && this.dolar > 0) {
-      this.cart.forEach(product => {
-        product.price = parseFloat((product.price / this.dolar).toFixed(2));
-      });
-    } else if (currency === 'EUR' && this.euro > 0) {
-      this.cart.forEach(product => {
-        product.price = parseFloat((product.price / this.euro).toFixed(2));
-      });
-    } else if (currency === 'CLP') {
-      // Aquí deberías revertir el precio a su valor original en CLP si es necesario
-    }
-    this.saveCart();
-  }
-
   private saveCart() {
     localStorage.setItem('cart', JSON.stringify(this.cart));
   }
 }
-
 
 

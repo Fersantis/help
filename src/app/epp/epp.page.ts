@@ -9,8 +9,8 @@ import { CartService, Product } from '../services/cart.service';
 export class EppPage implements OnInit {
 
   products: Product[] = [
-    { id: 1, name: 'Antiparras', price: 13, quantity: 1, category: 'epp' },
-    { id: 2, name: 'Guantes', price: 13, quantity: 1, category: 'epp' },
+    { id: 1, name: 'Antiparras', price: 13000, quantity: 1, category: 'epp', description: 'Descripción de las antiparras.' },
+    { id: 2, name: 'Guantes', price: 13000, quantity: 1, category: 'epp', description: 'Descripción de los guantes.' },
     // otros productos
   ];
 
@@ -24,3 +24,6 @@ export class EppPage implements OnInit {
   }
 
 }
+
+
+

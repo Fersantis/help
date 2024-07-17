@@ -14,12 +14,10 @@ export class IngresoPage implements OnInit {
   }
 
   Iralogin() {
-    console.log('llegue');
     this.router.navigate(['/login']);
   }
 
   Iraregistro() {
-    console.log('llegue');
     this.router.navigate(['/registro']);
   }
 

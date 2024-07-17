@@ -8,77 +8,51 @@ import { ApiService } from '../api.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
-  inputValue: string ='';
-  inputValue2: string ='';
+  inputValue: string = '';
+  inputValue2: string = '';
   errorMessage: string = '';
-  datos: any[] | undefined;
-  state: any;
 
-  user: any;
+  constructor(private router: Router, private apiService: ApiService) { }
 
-  constructor(private router: Router, private apiService: ApiService,) { }
-
-  ngOnInit() {
-  } 
-
-   
-
+  ngOnInit() { }
+ 
   Ingresar() {
-      
-    this.apiService.obtenerDatos(this.inputValue,this.inputValue2).subscribe(
-      (response: any) => {
-        const apiUsername = response[0].correo;
-        const apiPassword = response[0].contrasena;
-        const apirol = response[0].rol;
-        console.log(response[0].correo);
-        console.log(response[0].contrasena);
-        console.log(response);
-        console.log(this.inputValue);
-        console.log(this.inputValue2);
-        // Realiza las acciones necesarias con la respuesta de la API
-        // Por ejemplo, podrías almacenar los datos del usuario en una variable y pasarlos a la página de inicio
-        const userInputUsername = this.inputValue;
-        const userInputPassword = this.inputValue2;
-
-      
-      // Comparar los datos
-      if (apiUsername === userInputUsername && apiPassword === userInputPassword) {
-        // Si son iguales, hacer algo
-        console.log('Los datos son iguales');
-        
-    
-        // Realiza las acciones necesarias cuando los datos son iguales
-        const userData = {
-          username: apiUsername,
-          password: apiPassword,
-          rol:apirol
-       
-        };
-
-        Irahome() {
-          console.log('llegue');
-          this.router.navigate(['/home']);
-        }
-
-      } else {
-        // Si son diferentes, hacer otra cosa
-        
-        console.log('Los datos son diferentes');
-          // Maneja el caso cuando los datos no son iguales (por ejemplo, muestra un mensaje de error al usuario)
-          this.errorMessage = 'Los datos ingresados son incorrectos';
-      }
-    },
-    (error) => {
-      console.error(error);
-      // Maneja el error de la solicitud a la API
+    if (!this.inputValue || !this.inputValue2) {
+      this.errorMessage = 'Por favor, ingrese ambos campos'; console.log('0');
+      return;
     }
-  );
-      
+    console.log('0.1');
+    this.apiService.obtenerDatos(this.inputValue, this.inputValue2).subscribe(
+      (response: any) => {
+        if (response && response.length > 0) {
+          console.log('1');
+          const apiNombre = response[0].nombre;
+          const apiPassword = response[0].contrasena;
+
+          const userInputNombre = this.inputValue;
+          const userInputPassword = this.inputValue2;
+
+          if (apiNombre === userInputNombre && apiPassword === userInputPassword) {
+            console.log('2');
+            this.Irahome();
+          } else {
+            console.log('3');
+            this.errorMessage = 'Los datos ingresados son incorrectos';
+          }
+        } else {
+          console.log('4');
+          this.errorMessage = 'Usuario no encontrado';
+        }
+      },
+      (error: any) => {
+        console.error(error);
+        this.errorMessage = 'Error en la autenticación';
+      }
+    );
   }
 
-}
-function Irahome() {
-  throw new Error('Function not implemented.');
+  Irahome() {  
+    this.router.navigate(['/home']);
+  }
 }
 
